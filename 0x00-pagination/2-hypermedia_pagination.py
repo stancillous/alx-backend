@@ -16,7 +16,7 @@ Make sure to reuse get_page in your implementation.
 
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 def index_range(page: int, page_size: int) -> tuple:
@@ -56,8 +56,8 @@ class Server:
         start_index = index_tuple[0]
         end_index = index_tuple[1]
         return self.__dataset[start_index: end_index]
-    
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
         func to return a dict containing the following key-value pairs
         """
@@ -71,13 +71,3 @@ class Server:
             "prev_page": page - 1 if page > 1 else None,
             "total_pages": total_pages
         }
-
-server = Server()
-
-print(server.get_hyper(1, 2))
-print("---")
-print(server.get_hyper(2, 2))
-print("---")
-print(server.get_hyper(100, 3))
-print("---")
-print(server.get_hyper(3000, 100))
